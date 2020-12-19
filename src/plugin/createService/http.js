@@ -5,7 +5,15 @@ import { getEnv } from '@/plugin/Framework'
 import tools from '@/tools'
 import { withCredentials, timeout, codeMessage, baseURL } from '@/config/http'
 
-function handleError (error, msg) {
+/**
+ * @memberof http
+ * 异常错误处理
+ * @example
+ * handleError ('我发生了错误', '后端约定message')
+ * @param { string } error console错误信息
+ * @param { string } msg 后端message捕获
+ */
+function handleError (/* @type { string } */ error, /* @type { string } */msg) {
   // 添加到日志
   // Store.dispatch('logs/push', {
   //   message: msg,
@@ -13,11 +21,20 @@ function handleError (error, msg) {
   // })
   if (getEnv() === 'dev') {
     tools.log.danger('>>>>>> HTTP Error >>>>>>')
-    console.log(error)
+    console.log(error, msg)
   }
 }
 
-function createService (settings) {
+/**
+ * @memberof http
+ * @description HTTP请求处理
+ * @param { object } settings 请求设置
+ * @param { string } [settings.withCredentials] 安策略
+ * @param { number } [settings.timeout] 超时时间
+ * @param { string } [settings.baseURL] 接口地址
+ * @return { Promise } HTTP请求方法
+ */
+function createService (/* @type { object } */settings) {
   const service = Axios.create(settings)
   service.interceptors.request.use(
     config => {
@@ -67,19 +84,7 @@ const http = createService({
   baseURL
 })
 
-export function httpRequestQuery (url, method = 'GET', query) {
-  return http({
-    url,
-    params: query
-  })
-}
-
-export function httpRequestBody (url, method = 'POST', body, params = '') {
-  return http({
-    url: `${url}${params}`,
-    method: method,
-    data: body
-  })
-}
-
+/**
+ * @module Fremework-http
+ */
 export default http

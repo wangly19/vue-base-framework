@@ -1,10 +1,3 @@
-/*
- * @Autor: wangly19
- * @Date: 2020-12-06 10:13:53
- * @Description: 请求参数配置
- */
-
-// 请求地址
 export const baseURL = process.env.VUE_APP_BASEURL
 
 // 接口超时时间

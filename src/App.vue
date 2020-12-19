@@ -8,6 +8,17 @@
   </div>
 </template>
 
+<script>
+/**
+ * @module
+ * @page
+ * @name Vue 首页
+ * @description 处理中心路由视图
+ */
+export default {
+}
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
