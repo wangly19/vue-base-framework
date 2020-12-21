@@ -357,7 +357,6 @@ function buildNav (members) {
   const seen = {}
   const seenTutorials = {}
   const { JSModules, VuePageModules, VueComponentModules } = createVuePages(members.modules)
-  console.log(VuePageModules)
   nav += buildMemberNav(VuePageModules, 'Pages', {}, linkto)
   nav += buildMemberNav(VueComponentModules, 'Components', {}, linkto)
   nav += buildMemberNav(JSModules, 'Modules', {}, linkto)

@@ -1,3 +1,4 @@
+
 export default {
   getPerson: 'GET /person',
   setPerson: 'POST /person',

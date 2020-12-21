@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve --mode dev",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "dev": "vue-cli-service serve --mode dev",
     "doc": "jsdoc -r -c conf.json README.md"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "moment": "^2.29.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vuetify": "^2.2.11",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
@@ -39,7 +40,9 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "svg-sprite-loader": "^5.1.1",
+    "vue-cli-plugin-vuetify": "~2.0.8",
     "vue-template-compiler": "^2.6.12",
+    "vuetify-loader": "^1.3.0",
     "webpack-bundle-analyzer": "^4.2.0"
   }
 }

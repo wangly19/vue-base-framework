@@ -34,7 +34,7 @@ class CreateService {
   }
 
   /**
-   * @description 转换所有参数成有序数据
+   * 转换所有参数成有序数据
    * @property { parseRequestConfig } queryAllApi 转换所有参数成有序数据
    * @param { string } key 约定式名称，对象key值
    * @param { string } value 约定式地址，对象value值

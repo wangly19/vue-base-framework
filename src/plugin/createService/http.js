@@ -1,12 +1,11 @@
 import Axios from 'axios'
 // import Qs from 'qs'
-// import Store from '@/store'
+import Store from '@/store'
 import { getEnv } from '@/plugin/Framework'
 import tools from '@/tools'
 import { withCredentials, timeout, codeMessage, baseURL } from '@/config/http'
 
 /**
- * @memberof http
  * 异常错误处理
  * @example
  * handleError ('我发生了错误', '后端约定message')
@@ -14,27 +13,26 @@ import { withCredentials, timeout, codeMessage, baseURL } from '@/config/http'
  * @param { string } msg 后端message捕获
  */
 function handleError (/* @type { string } */ error, /* @type { string } */msg) {
-  // 添加到日志
-  // Store.dispatch('logs/push', {
-  //   message: msg,
-  //   type: 'danger'
-  // })
   if (getEnv() === 'dev') {
     tools.log.danger('>>>>>> HTTP Error >>>>>>')
     console.log(error, msg)
+  } else {
+    Store.dispatch('logs/push', {
+      message: msg,
+      type: 'danger'
+    })
   }
 }
 
 /**
- * @memberof http
- * @description HTTP请求处理
+ * HTTP请求处理
  * @param { object } settings 请求设置
- * @param { string } [settings.withCredentials] 安策略
+ * @param { string } [settings.withCredentials] 安全策略
  * @param { number } [settings.timeout] 超时时间
  * @param { string } [settings.baseURL] 接口地址
  * @return { Promise } HTTP请求方法
  */
-function createService (/* @type { object } */settings) {
+function createHttpService (/* @type { object } */settings) {
   const service = Axios.create(settings)
   service.interceptors.request.use(
     config => {
@@ -54,7 +52,7 @@ function createService (/* @type { object } */settings) {
       const { code, message, data } = response.data
       // 自定义提示
       if (code >= 30000) {
-        console.log('>>>: 自定义错误信息，全局提示处理', message)
+        console.log('>>> 自定义错误信息，全局提示处理', message)
         return data
       }
       // 正常的code
@@ -78,13 +76,10 @@ function createService (/* @type { object } */settings) {
   return service
 }
 
-const http = createService({
+const http = createHttpService({
   withCredentials,
   timeout,
   baseURL
 })
 
-/**
- * @module Fremework-http
- */
 export default http

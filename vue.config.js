@@ -11,6 +11,9 @@ module.exports = {
   assetsDir: 'static',
   lintOnSave: true,
   filenameHashing: true,
+  transpileDependencies: [
+    'vuetify'
+  ],
   configureWebpack: config => {
     config.externals = {
       vue: 'Vue',
